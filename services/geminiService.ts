@@ -55,7 +55,7 @@ export const callGeminiAPI = async (chatHistory: Message[]): Promise<string> => 
 
     try {
         const response: GenerateContentResponse = await ai.models.generateContent({
-            model: 'gemini-2.5-flash',
+            model: 'gemini-2.5-pro',
             contents: chatHistory.map(msg => ({
                 role: msg.role,
                 parts: msg.parts,
