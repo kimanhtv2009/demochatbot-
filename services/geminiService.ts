@@ -7,7 +7,7 @@ import type { Message } from '../types';
 
 // 1. Dán API Key của bạn vào đây.
 // Lấy API Key của bạn từ Google AI Studio: https://aistudio.google.com/app/apikey
-const API_KEY = "AIzaSyDTzed7QlVlKU_ccbu1I6UEMuE1Pc8LCw4"; 
+const API_KEY = "AIzaSyAUKH5_NdZXxBSy4h1HXB_2NHj0JGwBOvQ"; 
 
 // 2. Dán Chỉ dẫn Hệ thống (System Instructions) của bạn vào đây.
 // Đây là "bộ não" của chatbot. Hãy sao chép toàn bộ prompt bạn đã thiết kế
