@@ -440,7 +440,6 @@ TÀI LIỆU THAM KHẢO VỀ ĐIỀU TRỊ
 
 Nhóm các nhà tâm lý học tại Trường Đại học Helsinki đã hợp tác với chuyên gia Trường Đại học Millsaps thực hiện một nghiên cứu. Thông qua nghiên cứu thử nghiệm này, họ đã phát hiện ra một cách mới, thông minh cho phép phát hiện chứng ái kỷ ở người. Trong nghiên cứu này, đã được công bố trên tạp chí Psychophysiology, nhóm nghiên cứu đã đo lường các phản ứng thể chất đối với những kích thích nhất định ở những người được xác định là có tính ái kỷ.
 
-
 `;
 // ==================================================================================
 
