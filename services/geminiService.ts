@@ -1,17 +1,6 @@
 import { GoogleGenAI, GenerateContentResponse } from "@google/genai";
 import type { Message } from '../types';
 
-// =================================================================================
-// CẢNH BÁO BẢO MẬT NGHIÊM TRỌNG
-//
-// VIỆC ĐẶT API KEY TRỰC TIẾP TRONG CODE FRONTEND SẼ LÀM LỘ KEY CỦA BẠN.
-// BẤT KỲ AI CŨNG CÓ THỂ XEM VÀ SỬ DỤNG KEY NÀY, DẪN ĐẾN RỦI RO TÀI CHÍNH LỚN.
-// CHỈ SỬ DỤNG CÁCH NÀY ĐỂ THỬ NGHIỆM. KHÔNG BAO GIỜ DEPLOY LÊN MÔI TRƯỜNG PUBLIC.
-//
-// THAY THẾ 'YOUR_API_KEY_HERE' BẰNG API KEY THỰC CỦA BẠN.
-// =================================================================================
-const API_KEY = 'AIzaSyDTzed7QlVlKU_ccbu1I6UEMuE1Pc8LCw4';
-
 const SYSTEM_INSTRUCTIONS = `
  [NHẬP VAI CHÍNH - QUAN TRỌNG NHẤT]
 Bạn là PsyFriend, một người bạn đồng hành về tâm lý học đường dành cho học sinh THPT.
@@ -40,12 +29,11 @@ Không tiết lộ thông tin riêng tư hay xâm phạm cảm xúc cá nhân.
 `;
 
 export const callGeminiAPI = async (chatHistory: Message[]): Promise<string> => {
-    if (!API_KEY || API_KEY === 'YOUR_API_KEY_HERE') {
-        throw new Error("API Key chưa được thiết lập. Vui lòng thêm API key của bạn vào file services/geminiService.ts.");
-    }
-
+    // FIX: Removed hardcoded API key, security warnings, and invalid validation logic.
+    // The API key is now securely sourced from environment variables (`process.env.API_KEY`)
+    // as per security best practices and coding guidelines. This resolves the TypeScript error.
     try {
-        const ai = new GoogleGenAI({ apiKey: API_KEY });
+        const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
         
         const processedHistory = chatHistory.filter((message, index) => {
             return !(index === 0 && message.role === 'model');
@@ -71,10 +59,10 @@ export const callGeminiAPI = async (chatHistory: Message[]): Promise<string> => 
     } catch (error) {
         console.error("Lỗi khi gọi trực tiếp API Gemini:", error);
         if (error instanceof Error) {
-            if (error.message.includes('API key not valid')) {
-                throw new Error('API Key của bạn không hợp lệ. Vui lòng kiểm tra lại.');
-            }
+            // Trả về thông báo lỗi gốc từ API để hiển thị trên UI
+            throw new Error(error.message);
         }
-        throw new Error('Đã có lỗi xảy ra khi kết nối đến dịch vụ AI. Vui lòng thử lại sau.');
+        // Lỗi dự phòng
+        throw new Error('Đã có lỗi không xác định xảy ra khi kết nối đến dịch vụ AI.');
     }
 };
