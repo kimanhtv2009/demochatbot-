@@ -33,7 +33,7 @@ Không tiết lộ thông tin riêng tư hay xâm phạm cảm xúc cá nhân.
 const API_KEY = "AIzaSyDTzed7QlVlKU_ccbu1I6UEMuE1Pc8LCw4";
 
 export const callGeminiAPI = async (chatHistory: Message[]): Promise<string> => {
-    if (!API_KEY || API_KEY === "AIzaSyDTzed7QlVlKU_ccbu1I6UEMuE1Pc8LCw4") {
+    if (!API_KEY || API_KEY === "YOUR_API_KEY_HERE") {
         return "Lỗi: Vui lòng thay thế 'YOUR_API_KEY_HERE' bằng API Key của bạn trong file api/chat.ts.";
     }
 
