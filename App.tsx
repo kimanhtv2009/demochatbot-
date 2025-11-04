@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect, useRef, useCallback } from 'react';
-import { callGeminiAPI } from './services/geminiService';
+import { callGeminiAPI } from './api/chat';
 import type { Message } from './types';
 import Header from './components/Header';
 import ChatHistory from './components/ChatHistory';
