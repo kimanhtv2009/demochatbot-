@@ -5,10 +5,6 @@ import type { Message } from '../types';
 // QUAN TRỌNG: CẤU HÌNH CHO NGƯỜI DÙNG
 // ==================================================================================
 
-// 1. Dán API Key của bạn vào đây.
-// Lấy API Key của bạn từ Google AI Studio: https://aistudio.google.com/app/apikey
-const API_KEY = "AIzaSyDTzed7QlVlKU_ccbu1I6UEMuE1Pc8LCw4"; 
-
 // 2. Dán Chỉ dẫn Hệ thống (System Instructions) của bạn vào đây.
 // Đây là "bộ não" của chatbot. Hãy sao chép toàn bộ prompt bạn đã thiết kế
 // trong Google AI Studio và dán vào giữa cặp dấu ngoặc kép (`...`).
@@ -40,22 +36,15 @@ Không tiết lộ thông tin riêng tư hay xâm phạm cảm xúc cá nhân.
 `;
 // ==================================================================================
 
-let ai: GoogleGenAI | null = null;
+// Fix: Initialize GoogleGenAI with the API key from environment variables as per the guidelines.
+// Hardcoded API keys and related checks have been removed.
+const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
 
-// Khởi tạo AI client chỉ khi API key đã được cung cấp
-if (API_KEY && API_KEY !== "YOUR_GEMINI_API_KEY") {
-    ai = new GoogleGenAI({ apiKey: API_KEY });
-}
 
 export const callGeminiAPI = async (chatHistory: Message[]): Promise<string> => {
-    // Nếu AI client chưa được khởi tạo (do thiếu API key), trả về thông báo hướng dẫn
-    if (!ai) {
-        return "Lỗi cấu hình: Vui lòng dán API Key của bạn vào file `services/geminiService.ts`. Bạn có thể lấy API Key từ Google AI Studio.";
-    }
-
     try {
         const response: GenerateContentResponse = await ai.models.generateContent({
-            model: 'gemini-2.5-flash',
+            model: 'gemini-2.5-pro',
             contents: chatHistory.map(msg => ({
                 role: msg.role,
                 parts: msg.parts,
@@ -69,10 +58,8 @@ export const callGeminiAPI = async (chatHistory: Message[]): Promise<string> => 
 
     } catch (error) {
         console.error("Lỗi khi gọi Gemini API:", error);
-        // Cung cấp thông báo lỗi cụ thể hơn cho người dùng
-        if (error instanceof Error && error.message.includes('API key not valid')) {
-             return "Lỗi: API Key bạn cung cấp không hợp lệ. Vui lòng kiểm tra lại trong file `services/geminiService.ts`.";
-        }
-        return "Rất tiếc, đã có lỗi xảy ra khi kết nối với AI. Vui lòng kiểm tra lại API Key, kết nối mạng và thử lại.";
+        // Fix: Propagate the error to the caller. This allows the UI component to handle it gracefully.
+        // This also resolves the original TypeScript error related to the API key check.
+        throw error;
     }
 };

@@ -18,7 +18,7 @@ const ChatInput: React.FC<ChatInputProps> = ({ onSendMessage, isLoading }) => {
     };
 
     return (
-        <footer className="flex-shrink-0 p-4 border-t border-slate-200">
+        <footer className="flex-shrink-0 p-4 border-t border-violet-200">
             <form onSubmit={handleSubmit} className="flex items-center space-x-2">
                 <input
                     id="chat-input"
@@ -26,14 +26,14 @@ const ChatInput: React.FC<ChatInputProps> = ({ onSendMessage, isLoading }) => {
                     value={inputValue}
                     onChange={(e) => setInputValue(e.target.value)}
                     placeholder="Nhập tin nhắn của bạn..."
-                    className="flex-grow w-full px-4 py-2 bg-slate-100 border border-transparent rounded-full focus:outline-none focus:ring-2 focus:ring-blue-400"
+                    className="flex-grow w-full px-4 py-2 bg-violet-100 border border-transparent rounded-full focus:outline-none focus:ring-2 focus:ring-violet-400 placeholder:text-violet-500 text-violet-900"
                     disabled={isLoading}
                     autoComplete="off"
                 />
                 <button
                     id="send-btn"
                     type="submit"
-                    className="flex-shrink-0 w-10 h-10 bg-blue-500 text-white rounded-full flex items-center justify-center hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 disabled:bg-slate-400 disabled:cursor-not-allowed"
+                    className="flex-shrink-0 w-10 h-10 bg-violet-500 text-white rounded-full flex items-center justify-center hover:bg-violet-600 focus:outline-none focus:ring-2 focus:ring-violet-400 disabled:bg-violet-300 disabled:cursor-not-allowed"
                     disabled={isLoading}
                 >
                     {/* Send icon SVG */}
