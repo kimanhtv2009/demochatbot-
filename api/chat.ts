@@ -49,6 +49,14 @@ export default async function handler(request: Request) {
             });
         }
 
+        // The Gemini API requires that a conversation history starts with a 'user' message.
+        // Our app's initial welcome message is from the 'model', which is for the UI only.
+        // We filter it out here before sending the request to the API.
+        const processedHistory = chatHistory.filter((message, index) => {
+            // Keep the message unless it is the very first one AND it's from the model.
+            return !(index === 0 && message.role === 'model');
+        });
+
         // === ĐÂY LÀ NƠI GẮN API KEY ===
         // Khởi tạo Gemini AI client một cách an toàn trên server.
         // API key được lấy từ biến môi trường của Vercel (process.env.API_KEY)
@@ -58,7 +66,7 @@ export default async function handler(request: Request) {
         const response: GenerateContentResponse = await ai.models.generateContent({
             // === ĐÂY LÀ NƠI CHỌN MODEL CHATBOT ===
             model: 'gemini-2.5-pro',
-            contents: chatHistory.map(msg => ({
+            contents: processedHistory.map(msg => ({
                 role: msg.role,
                 parts: msg.parts,
             })),
@@ -76,7 +84,11 @@ export default async function handler(request: Request) {
 
     } catch (error) {
         console.error("Error in /api/chat:", error);
-        return new Response(JSON.stringify({ error: 'Internal Server Error' }), {
+        let errorMessage = 'Internal Server Error';
+        if (error instanceof Error && (error.message.includes('API key not valid') || error.message.includes('API_KEY'))) {
+            errorMessage = 'API Key không hợp lệ hoặc chưa được thiết lập. Vui lòng kiểm tra biến môi trường trên Vercel.';
+        }
+        return new Response(JSON.stringify({ error: errorMessage }), {
             status: 500,
             headers: { 'Content-Type': 'application/json' },
         });

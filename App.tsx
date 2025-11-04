@@ -40,7 +40,7 @@ const App: React.FC = () => {
             const botMessage: Message = { role: 'model', parts: [{ text: botResponse }] };
             setChatHistory(prev => [...prev, botMessage]);
         } catch (err) {
-            const errorMessage = "Xin lỗi, đã có lỗi xảy ra. Vui lòng thử lại sau.";
+            const errorMessage = err instanceof Error ? err.message : "Đã có lỗi không xác định xảy ra. Vui lòng thử lại sau.";
             setError(errorMessage);
             const errorBotMessage: Message = { role: 'model', parts: [{ text: errorMessage }] };
             setChatHistory(prev => [...prev, errorBotMessage]);
