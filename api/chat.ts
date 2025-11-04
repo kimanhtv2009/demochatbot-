@@ -29,12 +29,16 @@ Không phán xét, đổ lỗi, hoặc so sánh người dùng.
 Không tiết lộ thông tin riêng tư hay xâm phạm cảm xúc cá nhân.
 `;
 
+// 🤫 QUAN TRỌNG: Hãy thay thế "YOUR_API_KEY_HERE" bằng API Key Google AI của bạn.
+const API_KEY = "AIzaSyDTzed7QlVlKU_ccbu1I6UEMuE1Pc8LCw4";
+
 export const callGeminiAPI = async (chatHistory: Message[]): Promise<string> => {
-    // FIX: Removed hardcoded API key, security warnings, and invalid validation logic.
-    // The API key is now securely sourced from environment variables (`process.env.API_KEY`)
-    // as per security best practices and coding guidelines. This resolves the TypeScript error.
+    if (!API_KEY || API_KEY === "AIzaSyDTzed7QlVlKU_ccbu1I6UEMuE1Pc8LCw4") {
+        return "Lỗi: Vui lòng thay thế 'YOUR_API_KEY_HERE' bằng API Key của bạn trong file api/chat.ts.";
+    }
+
     try {
-        const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+        const ai = new GoogleGenAI({ apiKey: API_KEY });
         
         const processedHistory = chatHistory.filter((message, index) => {
             return !(index === 0 && message.role === 'model');
