@@ -30,7 +30,7 @@ Không tiết lộ thông tin riêng tư hay xâm phạm cảm xúc cá nhân.
 `;
 
 // 🤫 QUAN TRỌNG: Hãy thay thế "YOUR_API_KEY_HERE" bằng API Key Google AI của bạn.
-const API_KEY = "AIzaSyDTzed7QlVlKU_ccbu1I6UEMuE1Pc8LCw4";
+const API_KEY = "AQ.Ab8RN6I-LtL_cpAfnQVdkLwWWq1-TAFo0gxYp-jj7el5RT9g6g";
 
 export const callGeminiAPI = async (chatHistory: Message[]): Promise<string> => {
     if (!API_KEY || API_KEY === "YOUR_API_KEY_HERE") {
