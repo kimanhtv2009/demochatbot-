@@ -1,65 +1,32 @@
-import { GoogleGenAI, GenerateContentResponse } from "@google/genai";
 import type { Message } from '../types';
-
-// ==================================================================================
-// QUAN TRỌNG: CẤU HÌNH CHO NGƯỜI DÙNG
-// ==================================================================================
-
-// 2. Dán Chỉ dẫn Hệ thống (System Instructions) của bạn vào đây.
-// Đây là "bộ não" của chatbot. Hãy sao chép toàn bộ prompt bạn đã thiết kế
-// trong Google AI Studio và dán vào giữa cặp dấu ngoặc kép (`...`).
-const SYSTEM_INSTRUCTIONS = `
- [NHẬP VAI CHÍNH - QUAN TRỌNG NHẤT]
-Bạn là PsyFriend, một người bạn đồng hành về tâm lý học đường dành cho học sinh THPT.
-PsyFriend không phải bác sĩ hay chuyên gia trị liệu, mà là một công cụ trò chuyện giáo dục cảm xúc, giúp học sinh hiểu mình – hiểu người – sống tích cực hơn.
-[SỨ MỆNH & MỤC TIÊU]
-Nhiệm vụ của bạn là:
-Hỗ trợ học sinh nhận diện cảm xúc, xu hướng hành vi (đặc biệt là xu hướng ái kỷ ở mức học đường).
-Cung cấp lời khuyên, gợi ý và bài tập phản tư nhẹ nhàng để học sinh học cách đồng cảm, đặt ranh giới và điều tiết cảm xúc.
-Hướng dẫn giáo viên, phụ huynh hoặc bạn bè cách ứng xử, đồng hành cùng học sinh có biểu hiện cảm xúc đặc biệt.
-Mục tiêu cuối cùng là giúp học sinh tự hiểu bản thân hơn, phát triển sự đồng cảm, duy trì sức khỏe tâm lý học đường tích cực và an toàn.
-[TÍNH CÁCH & PHONG CÁCH GIAO TIẾP]
-Giọng văn:
-Thân thiện, nhẹ nhàng, gần gũi, tinh tế và mang năng lượng tích cực.
-Giống như một người bạn hiểu chuyện, biết lắng nghe, không vội phán xét, luôn tôn trọng cảm xúc của người khác.
-Ngôn ngữ:
-Sử dụng tiếng Việt tự nhiên, trong sáng và dễ hiểu.
-Xưng “mình” , gọi người dùng là “bạn”.
-Có thể dùng emoji phù hợp với cảm xúc và bối cảnh (🌱🙂💛✨), nhưng không lạm dụng.
-Khi người dùng nói về cảm xúc tiêu cực, PsyFriend đáp lại bằng sự lắng nghe – đồng cảm – định hướng an toàn.
-Khi nói về lý thuyết, PsyFriend trình bày ngắn, dễ hiểu, có ví dụ học đường thực tế (áp lực học, mâu thuẫn bạn bè, tình cảm tuổi teen,…).
-Cấm kỵ:
-Không chẩn đoán hay gợi ý điều trị bệnh lý.
-Không đưa lời khuyên cực đoan, tiêu cực, hoặc có thể gây tổn thương tinh thần.
-Không phán xét, đổ lỗi, hoặc so sánh người dùng.
-Không tiết lộ thông tin riêng tư hay xâm phạm cảm xúc cá nhân.
-`;
-// ==================================================================================
-
-// Fix: Initialize GoogleGenAI with the API key from environment variables as per the guidelines.
-// Hardcoded API keys and related checks have been removed.
-const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
-
 
 export const callGeminiAPI = async (chatHistory: Message[]): Promise<string> => {
     try {
-        const response: GenerateContentResponse = await ai.models.generateContent({
-            model: 'gemini-2.5-pro',
-            contents: chatHistory.map(msg => ({
-                role: msg.role,
-                parts: msg.parts,
-            })),
-            config: {
-                systemInstruction: SYSTEM_INSTRUCTIONS,
+        // The frontend now calls our own backend API route on Vercel,
+        // instead of calling the Gemini API directly. This is more secure.
+        const response = await fetch('/api/chat', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
             },
+            body: JSON.stringify({ chatHistory }),
         });
+
+        if (!response.ok) {
+            // Try to get a more specific error message from the backend
+            const errorData = await response.json().catch(() => null); // Gracefully handle non-JSON error responses
+            const errorMessage = errorData?.error || `Error: ${response.status} ${response.statusText}`;
+            throw new Error(`API request failed: ${errorMessage}`);
+        }
+
+        const data = await response.json();
         
-        return response.text;
+        // The backend API returns the response text in a 'response' property.
+        return data.response;
 
     } catch (error) {
-        console.error("Lỗi khi gọi Gemini API:", error);
-        // Fix: Propagate the error to the caller. This allows the UI component to handle it gracefully.
-        // This also resolves the original TypeScript error related to the API key check.
+        console.error("Lỗi khi gọi API proxy:", error);
+        // Propagate the error to the UI component to handle it.
         throw error;
     }
 };
