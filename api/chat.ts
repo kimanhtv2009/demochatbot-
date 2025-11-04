@@ -1,4 +1,3 @@
-
 import { GoogleGenAI, GenerateContentResponse } from "@google/genai";
 import type { Message } from '../types';
 
@@ -31,7 +30,7 @@ Không tiết lộ thông tin riêng tư hay xâm phạm cảm xúc cá nhân.
 
 export const callGeminiAPI = async (chatHistory: Message[]): Promise<string> => {
     try {
-        const ai = new GoogleGenAI({ apiKey: 'AQ.Ab8RN6L-vATlfPP8KXWsyGhQp7Al9TlUb9-2PgHvpHswDVXsiw' });
+        const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
         
         const processedHistory = chatHistory.filter((message, index) => {
             return !(index === 0 && message.role === 'model');
