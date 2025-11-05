@@ -2,7 +2,19 @@
 import { GoogleGenAI, GenerateContentResponse } from "@google/genai";
 import type { Message } from '../types';
 
-const SYSTEM_INSTRUCTIONS = `
+// This is a Vercel Serverless Function
+export default async function handler(req: any, res: any) {
+  if (req.method !== 'POST') {
+    return res.status(405).json({ error: 'Method Not Allowed' });
+  }
+
+  const { chatHistory } = req.body;
+
+  if (!chatHistory) {
+    return res.status(400).json({ error: 'chatHistory is required' });
+  }
+
+  const SYSTEM_INSTRUCTIONS = `
  [NHẬP VAI CHÍNH - QUAN TRỌNG NHẤT]
 Bạn là PsyFriend, một người bạn đồng hành về tâm lý học đường dành cho học sinh THPT.
 PsyFriend không phải bác sĩ hay chuyên gia trị liệu, mà là một công cụ trò chuyện giáo dục cảm xúc, giúp học sinh hiểu mình – hiểu người – sống tích cực hơn.
@@ -29,40 +41,39 @@ Không phán xét, đổ lỗi, hoặc so sánh người dùng.
 Không tiết lộ thông tin riêng tư hay xâm phạm cảm xúc cá nhân.
 `;
 
-
-// Fix: Refactor to align with guidelines by removing apiKey parameter and using process.env.API_KEY.
-export const callGeminiAPI = async (chatHistory: Message[]): Promise<string> => {
-    try {
-        // Fix: Initialize GoogleGenAI with the API key from environment variables as per guidelines.
-        const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
-        
-        const processedHistory = chatHistory.filter((message, index) => {
-            return !(index === 0 && message.role === 'model');
-        });
-
-        if (processedHistory.length === 0) {
-            return "Vui lòng nhập một tin nhắn để bắt đầu cuộc trò chuyện.";
-        }
-
-        const response: GenerateContentResponse = await ai.models.generateContent({
-            model: 'gemini-2.5-pro',
-            contents: processedHistory.map(msg => ({
-                role: msg.role,
-                parts: msg.parts,
-            })),
-            config: {
-                systemInstruction: SYSTEM_INSTRUCTIONS,
-            },
-        });
-
-        return response.text;
-
-    // Fix: Corrected catch block variable to resolve "Cannot find name 'error'" errors.
-    } catch (e) {
-        console.error("Lỗi khi gọi trực tiếp API Gemini:", e);
-        if (e instanceof Error) {
-            throw new Error(e.message);
-        }
-        throw new Error('Đã có lỗi không xác định xảy ra khi kết nối đến dịch vụ AI.');
+  try {
+    // IMPORTANT: Vercel uses process.env to store environment variables
+    const apiKey = process.env.GEMINI_API_KEY;
+    if (!apiKey) {
+      throw new Error('API key is not configured on the server.');
     }
-};
+
+    const ai = new GoogleGenAI({ apiKey });
+    
+    const processedHistory = chatHistory.filter((message: Message, index: number) => {
+        return !(index === 0 && message.role === 'model');
+    });
+
+    if (processedHistory.length === 0) {
+      return res.status(400).json({ error: "Cannot send an empty message history to the AI."});
+    }
+
+    const response: GenerateContentResponse = await ai.models.generateContent({
+        model: 'gemini-2.5-pro',
+        contents: processedHistory.map((msg: Message) => ({
+            role: msg.role,
+            parts: msg.parts,
+        })),
+        config: {
+            systemInstruction: SYSTEM_INSTRUCTIONS,
+        },
+    });
+
+    res.status(200).json({ response: response.text });
+
+  } catch (e) {
+    console.error("Lỗi khi gọi API Gemini trên server:", e);
+    const message = e instanceof Error ? e.message : 'Unknown server error.';
+    res.status(500).json({ error: `Đã có lỗi không xác định xảy ra khi kết nối đến dịch vụ AI: ${message}` });
+  }
+}

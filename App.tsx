@@ -1,6 +1,5 @@
 
 import React, { useState, useEffect, useCallback } from 'react';
-import { callGeminiAPI } from './api/chat';
 import type { Message } from './types';
 import Header from './components/Header';
 import ChatHistory from './components/ChatHistory';
@@ -21,10 +20,10 @@ const App: React.FC = () => {
         }
     }, [chatHistory.length]);
 
-    // Fix: Chat is now initialized on component mount, as API key is handled by environment variables.
     useEffect(() => {
         initializeChat();
     }, [initializeChat]);
+
 
     const handleSendMessage = async (userInput: string) => {
         if (!userInput.trim()) return;
@@ -37,14 +36,25 @@ const App: React.FC = () => {
         setError(null);
 
         try {
-            // Fix: Call Gemini API without passing an API key, as it's handled via environment variables.
-            const botResponse = await callGeminiAPI(newChatHistory);
-            const botMessage: Message = { role: 'model', parts: [{ text: botResponse }] };
+            // Call our own backend endpoint on Vercel
+            const response = await fetch('/api/chat', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ chatHistory: newChatHistory }),
+            });
+
+            if (!response.ok) {
+                const errorData = await response.json();
+                throw new Error(errorData.error || 'Đã có lỗi xảy ra từ server.');
+            }
+
+            const data = await response.json();
+            const botMessage: Message = { role: 'model', parts: [{ text: data.response }] };
             setChatHistory(prev => [...prev, botMessage]);
         } catch (err) {
             const errorMessage = err instanceof Error ? err.message : "Đã có lỗi không xác định xảy ra. Vui lòng thử lại sau.";
-            
-            // Fix: Removed specific error handling for invalid API keys.
             setError(errorMessage);
             const errorBotMessage: Message = { role: 'model', parts: [{ text: `Lỗi: ${errorMessage}` }] };
             setChatHistory(prev => [...prev, errorBotMessage]);
@@ -53,13 +63,13 @@ const App: React.FC = () => {
         }
     };
     
-    // Fix: Removed conditional rendering for API key selection. The app now renders the chat view directly.
     return (
         <div className="flex items-center justify-center min-h-screen p-2 sm:p-4">
             <div className="flex flex-col w-full max-w-2xl h-[95vh] sm:h-[90vh] bg-white rounded-2xl shadow-lg">
                 <Header />
                 <ChatHistory chatHistory={chatHistory} isLoading={isLoading} />
                 <ChatInput onSendMessage={handleSendMessage} isLoading={isLoading} />
+                 {error && <p className="p-2 text-center text-red-500 text-sm">{error}</p>}
             </div>
         </div>
     );
