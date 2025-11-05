@@ -4,14 +4,12 @@ export interface Message {
 }
 
 // Thêm dòng này để TypeScript hiểu đối tượng aistudio trên window
-// Fix: Define an interface for the aistudio object to resolve the type conflict as the error indicates a subsequent declaration expects the type to be 'AIStudio'.
-interface AIStudio {
-    hasSelectedApiKey: () => Promise<boolean>;
-    openSelectKey: () => Promise<void>;
-}
-
+// Fix: Resolve "Subsequent property declarations must have the same type" error by inlining the type definition for `aistudio` and removing the potentially conflicting `AIStudio` interface.
 declare global {
     interface Window {
-        aistudio?: AIStudio;
+        aistudio?: {
+            hasSelectedApiKey: () => Promise<boolean>;
+            openSelectKey: () => Promise<void>;
+        };
     }
 }

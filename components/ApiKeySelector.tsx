@@ -1,23 +1,20 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 
 interface ApiKeySelectorProps {
     onKeySelected: () => void;
 }
 
+const API_KEY_STORAGE_KEY = 'gemini_api_key';
+
 const ApiKeySelector: React.FC<ApiKeySelectorProps> = ({ onKeySelected }) => {
-    const handleSelectKey = async () => {
-        if (window.aistudio) {
-            try {
-                await window.aistudio.openSelectKey();
-                // Theo hướng dẫn, giả định thành công sau khi gọi và cập nhật trạng thái.
-                onKeySelected();
-            } catch (e) {
-                console.error("Không thể mở lựa chọn API key:", e);
-                alert("Không thể mở hộp thoại chọn API key. Vui lòng kiểm tra console để biết lỗi.");
-            }
-        } else {
-            alert("Việc chọn API key không khả dụng trong môi trường này.");
+    const [apiKey, setApiKey] = useState('');
+
+    const handleSaveKey = (e: React.FormEvent) => {
+        e.preventDefault();
+        if (apiKey.trim()) {
+            localStorage.setItem(API_KEY_STORAGE_KEY, apiKey.trim());
+            onKeySelected();
         }
     };
 
@@ -33,20 +30,33 @@ const ApiKeySelector: React.FC<ApiKeySelectorProps> = ({ onKeySelected }) => {
                 </div>
                 <h1 className="text-2xl font-bold text-violet-900">Chào mừng đến với PsyFriend</h1>
                 <p className="text-violet-600">
-                    Để bắt đầu trò chuyện, bạn cần chọn một API key. Key của bạn được lưu trữ an toàn và chỉ được sử dụng cho phiên này.
+                    Để bắt đầu trò chuyện, vui lòng nhập Gemini API key của bạn. Key của bạn được lưu trữ an toàn trong trình duyệt.
                 </p>
+                
+                <form onSubmit={handleSaveKey} className="space-y-4">
+                    <input
+                        type="password"
+                        value={apiKey}
+                        onChange={(e) => setApiKey(e.target.value)}
+                        placeholder="Dán API key của bạn vào đây"
+                        className="w-full px-4 py-2 bg-violet-50 border border-violet-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-violet-400 placeholder:text-violet-400 text-violet-900"
+                        autoComplete="off"
+                    />
+                    <button
+                        type="submit"
+                        className="w-full px-4 py-3 font-semibold text-white bg-violet-500 rounded-lg hover:bg-violet-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-violet-400 transition-colors duration-200 disabled:bg-violet-300"
+                        disabled={!apiKey.trim()}
+                    >
+                        Lưu & Bắt đầu Trò chuyện
+                    </button>
+                </form>
+
                 <p className="text-sm text-gray-500">
-                    Dự án này yêu cầu một Gemini API key. Để biết thêm thông tin về thanh toán, vui lòng xem{' '}
-                    <a href="https://ai.google.dev/gemini-api/docs/billing" target="_blank" rel="noopener noreferrer" className="text-violet-500 hover:underline">
-                        tài liệu thanh toán
+                    Bạn có thể lấy API key từ{' '}
+                    <a href="https://aistudio.google.com/app/apikey" target="_blank" rel="noopener noreferrer" className="text-violet-500 hover:underline">
+                        Google AI Studio
                     </a>.
                 </p>
-                <button
-                    onClick={handleSelectKey}
-                    className="w-full px-4 py-3 font-semibold text-white bg-violet-500 rounded-lg hover:bg-violet-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-violet-400 transition-colors duration-200"
-                >
-                    Chọn API Key
-                </button>
             </div>
         </div>
     );
