@@ -28,15 +28,19 @@ Không phán xét, đổ lỗi, hoặc so sánh người dùng.
 Không tiết lộ thông tin riêng tư hay xâm phạm cảm xúc cá nhân.
 `;
 
+
 export const callGeminiAPI = async (chatHistory: Message[]): Promise<string> => {
     try {
         const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
         
         const processedHistory = chatHistory.filter((message, index) => {
+            // Do not include the initial welcome message in the history sent to the API
             return !(index === 0 && message.role === 'model');
         });
 
         if (processedHistory.length === 0) {
+            // This case should ideally not be hit if called from App.tsx after a user message,
+            // but it's good practice to keep it.
             return "Vui lòng nhập một tin nhắn để bắt đầu cuộc trò chuyện.";
         }
 
