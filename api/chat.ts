@@ -59,7 +59,7 @@ Không tiết lộ thông tin riêng tư hay xâm phạm cảm xúc cá nhân.
     }
 
     const response: GenerateContentResponse = await ai.models.generateContent({
-        model: 'gen-lang-client-0315489737',
+        model: 'PSYFRIENDV2',
         contents: processedHistory.map((msg: Message) => ({
             role: msg.role,
             parts: msg.parts,
