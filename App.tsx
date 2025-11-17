@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect, useCallback } from 'react';
 import type { Message } from './types';
 import Header from './components/Header';
@@ -9,11 +8,12 @@ const App: React.FC = () => {
     const [chatHistory, setChatHistory] = useState<Message[]>([]);
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [error, setError] = useState<string | null>(null);
+    const [suggestionChips, setSuggestionChips] = useState<string[]>([]);
 
     const initializeChat = useCallback(() => {
         const welcomeMessage: Message = {
             role: 'model',
-            parts: [{ text: "Xin chào! Tôi là PsyFriend, người bạn đồng hành của bạn. Tôi ở đây để lắng nghe và cung cấp một không gian an toàn để bạn chia sẻ về những khó khăn, đặc biệt là các vấn đề liên quan đến ái kỷ trong môi trường học đường. Bạn muốn bắt đầu cuộc trò chuyện như thế nào?" }]
+            parts: [{ text: "Xin chào! Mình là PsyFriend, người bạn đồng hành về tâm lý học đường của bạn. 🌱\n\nMình ở đây để lắng nghe và tạo một không gian an toàn để bạn chia sẻ. Bạn đang cảm thấy thế nào hôm nay?\n\nNếu bạn muốn, chúng ta có thể bắt đầu với một bài khảo sát nhỏ để hiểu rõ hơn về bản thân." }]
         };
         if (chatHistory.length === 0) {
             setChatHistory([welcomeMessage]);
@@ -26,7 +26,7 @@ const App: React.FC = () => {
 
 
     const handleSendMessage = async (userInput: string) => {
-        if (!userInput.trim()) return;
+        if (!userInput.trim() || isLoading) return;
 
         const userMessage: Message = { role: 'user', parts: [{ text: userInput }] };
         const newChatHistory = [...chatHistory, userMessage];
@@ -34,9 +34,12 @@ const App: React.FC = () => {
         setChatHistory(newChatHistory);
         setIsLoading(true);
         setError(null);
+        setSuggestionChips([]);
+
+        const botMessagePlaceholder: Message = { role: 'model', parts: [{ text: "" }] };
+        setChatHistory(prev => [...prev, botMessagePlaceholder]);
 
         try {
-            // Call our own backend endpoint on Vercel
             const response = await fetch('/api/chat', {
                 method: 'POST',
                 headers: {
@@ -45,19 +48,53 @@ const App: React.FC = () => {
                 body: JSON.stringify({ chatHistory: newChatHistory }),
             });
 
-            if (!response.ok) {
-                const errorData = await response.json();
-                throw new Error(errorData.error || 'Đã có lỗi xảy ra từ server.');
+            if (!response.ok || !response.body) {
+                const errorData = response.statusText;
+                throw new Error(errorData || 'Đã có lỗi xảy ra từ server.');
+            }
+            
+            const reader = response.body.getReader();
+            const decoder = new TextDecoder();
+            let accumulatedText = '';
+
+            while (true) {
+                const { done, value } = await reader.read();
+                if (done) break;
+
+                accumulatedText += decoder.decode(value, { stream: true });
+                
+                const suggestionMarker = '[SUGGESTIONS]:';
+                const markerIndex = accumulatedText.indexOf(suggestionMarker);
+                
+                let displayText = accumulatedText;
+
+                if (markerIndex !== -1) {
+                    displayText = accumulatedText.substring(0, markerIndex).trim();
+                    const suggestionsPart = accumulatedText.substring(markerIndex + suggestionMarker.length);
+                    const chips = suggestionsPart.split(';').map(s => s.trim()).filter(Boolean);
+                    if (JSON.stringify(chips) !== JSON.stringify(suggestionChips)) {
+                         setSuggestionChips(chips);
+                    }
+                } else {
+                    setSuggestionChips([]);
+                }
+
+                setChatHistory(prev => {
+                    const updatedHistory = [...prev];
+                    updatedHistory[updatedHistory.length - 1] = { role: 'model', parts: [{ text: displayText }] };
+                    return updatedHistory;
+                });
             }
 
-            const data = await response.json();
-            const botMessage: Message = { role: 'model', parts: [{ text: data.response }] };
-            setChatHistory(prev => [...prev, botMessage]);
         } catch (err) {
             const errorMessage = err instanceof Error ? err.message : "Đã có lỗi không xác định xảy ra. Vui lòng thử lại sau.";
             setError(errorMessage);
             const errorBotMessage: Message = { role: 'model', parts: [{ text: `Lỗi: ${errorMessage}` }] };
-            setChatHistory(prev => [...prev, errorBotMessage]);
+            // Replace the placeholder with the error message
+            setChatHistory(prev => {
+                const historyWithoutPlaceholder = prev.slice(0, -1);
+                return [...historyWithoutPlaceholder, errorBotMessage];
+            });
         } finally {
             setIsLoading(false);
         }
@@ -68,8 +105,11 @@ const App: React.FC = () => {
             <div className="flex flex-col w-full max-w-2xl h-[95vh] sm:h-[90vh] bg-white rounded-2xl shadow-lg">
                 <Header />
                 <ChatHistory chatHistory={chatHistory} isLoading={isLoading} />
-                <ChatInput onSendMessage={handleSendMessage} isLoading={isLoading} />
-                 {error && <p className="p-2 text-center text-red-500 text-sm">{error}</p>}
+                <ChatInput 
+                    onSendMessage={handleSendMessage} 
+                    isLoading={isLoading} 
+                    suggestionChips={suggestionChips}
+                />
             </div>
         </div>
     );

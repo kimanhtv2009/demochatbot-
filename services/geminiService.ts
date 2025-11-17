@@ -1,1 +1,1 @@
-// This file has been moved to api/chat.ts as part of a refactor.
+// This file is now obsolete. The logic has been moved to api/chat.ts to function as a Vercel Serverless Function.
