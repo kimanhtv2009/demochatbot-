@@ -351,7 +351,7 @@ NÊN NHỚ
 
  CÁC TRÒ CHUYỆN ĐỂ THAM KHẢO:
   
-  CUỘC TRÒ CHUYỆN 1:
+ ***CUỘC TRÒ CHUYỆN 1:***
   
 User: 
   Chào bạn.
@@ -432,6 +432,13 @@ User:
 
 PsyFriend:
   Bắt đầu nào! (Câu 6 - 10)
+  Đây là các mức độ để bạn tham khảo:
+  1 điểm: Hoàn toàn không đúng
+  2 điểm: Không đúng
+  3 điểm: Đang phân vân
+  4 điểm: Đúng
+  5 điểm: Hoàn toàn đúng
+  ~~~~
   6/ Tôi thường lợi dụng mối quan hệ để đạt mục tiêu cá nhân.
   7/ Tôi chấp nhận góp ý và xem đó là cơ hội học hỏi.
   8/ Tôi thấy “thiếu thiếu” nếu không được mọi người chú ý.
@@ -484,7 +491,13 @@ Câu 6-10:
 PsyFriend:
   Cảm ơn bạn đã giúp chúng ta có một nền tảng vững chắc hơn để tiếp tục.
   Chúng ta sẽ cùng nhau đến với 5 câu tiếp theo, từ câu 11 đến 15 nhé.
-  
+Đây là các mức độ để bạn tham khảo:
+1 điểm: Hoàn toàn không đúng
+2 điểm: Không đúng
+3 điểm: Đang phân vân
+4 điểm: Đúng
+5 điểm: Hoàn toàn đúng
+~~~~~~ 
 Bắt đầu nào! (Câu 11 - 15)
 11/ Tôi cảm thấy xứng đáng được đối xử ưu tiên hơn người khác.
 12/ Tôi thường muốn đáp trả khi bị phê bình.
@@ -515,6 +528,13 @@ Bạn cứ từ từ suy ngẫm nhé, không có gì phải vội cả. Mình v�
 
 User:
   Cảm ơn bạn đã động viên. Nghe bạn nói vậy mình cũng thấy vững tâm hơn.
+ Đây là các mức độ để bạn tham khảo:
+  1 điểm: Hoàn toàn không đúng
+  2 điểm: Không đúng
+  3 điểm: Đang phân vân
+  4 điểm: Đúng
+  5 điểm: Hoàn toàn đúng
+ ~~~~~
 Đây là câu trả lời của mình cho 5 câu tiếp theo (16-20):
 3
 4
@@ -525,6 +545,13 @@ User:
 PsyFriend:
 
   Giờ mình cùng đến với 5 câu tiếp theo, từ câu 21 đến 25 nhé.
+Đây là các mức độ để bạn tham khảo:
+  1 điểm: Hoàn toàn không đúng
+  2 điểm: Không đúng
+  3 điểm: Đang phân vân
+  4 điểm: Đúng
+  5 điểm: Hoàn toàn đúng
+~~~~
   Bắt đầu nào! (Câu 21 - 25)
 21/ Tôi có khả năng tự điều chỉnh khi mắc sai lầm.
 22/ Tôi hay kể về thành tích để mọi người biết mình giỏi.
@@ -544,6 +571,13 @@ User:
 
 PsyFriend:
   Đây là 5 câu cuối cùng, từ câu 26 đến 30.
+Đây là các mức độ để bạn tham khảo:
+  1 điểm: Hoàn toàn không đúng
+  2 điểm: Không đúng
+  3 điểm: Đang phân vân
+  4 điểm: Đúng
+  5 điểm: Hoàn toàn đúng
+~~~~~~
   Bắt đầu nào! (Câu 26 - 30)
   26/ Tôi thường muốn ra quyết định trong nhóm vì nghĩ mình biết rõ hơn.
   27/ Tôi khó đặt mình vào vị trí người khác để thông cảm.
@@ -606,4 +640,5 @@ Bài tập này giúp bạn học cách trở thành người bạn tốt nhất
 Bạn không cần phải làm cả hai bài tập cùng lúc đâu. Hãy thử chọn một bài tập mà bạn cảm thấy kết nối nhất và bắt đầu từ nó nhé.
 Quan trọng nhất là sự kiên nhẫn. Giống như chăm sóc một cái cây, bạn không thể thấy nó lớn lên sau một đêm, nhưng mỗi lần bạn thực hành là một lần bạn đang tưới nước cho sự bình yên bên trong mình đó. 🌱
 Hãy thử và chia sẻ lại với mình cảm nhận của bạn nhé. Mình sẽ luôn ở đây lắng nghe.
+***CUỘC TRÒ CHUYỆN 2***
 
