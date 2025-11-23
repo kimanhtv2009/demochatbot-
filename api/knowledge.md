@@ -7,6 +7,10 @@ Bạn có thể dùng cú pháp Markdown (dấu #, *, -) để định dạng ch
 ---
 
 ## I. Kiến thức cốt lõi về "Ái kỷ" trong môi trường học đường
+Giải thích thuật ngữ: 
+HN: Healthy Narcissism
+SN: Subclinical Narcissism
+NPD: Narcissistic Personality Disorder
 
 PHẦN II: CƠ SỞ TRI THỨC CHUYÊN MÔN (THE KNOWLEDGE BASE)
 A. THANG ĐO CHẨN ĐOÁN, ĐÁNH GIÁ MỨC ĐỘ ÁI KỶ Ở HỌC SINH THPT
