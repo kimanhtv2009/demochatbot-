@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect, useCallback } from 'react';
 import type { Message } from './types';
 import Header from './components/Header';
@@ -7,7 +8,6 @@ import ChatInput from './components/ChatInput';
 const App: React.FC = () => {
     const [chatHistory, setChatHistory] = useState<Message[]>([]);
     const [isLoading, setIsLoading] = useState<boolean>(false);
-    const [error, setError] = useState<string | null>(null);
     const [suggestionChips, setSuggestionChips] = useState<string[]>([]);
 
     const initializeChat = useCallback(() => {
@@ -24,20 +24,13 @@ const App: React.FC = () => {
         initializeChat();
     }, [initializeChat]);
 
-
-    const handleSendMessage = async (userInput: string) => {
-        if (!userInput.trim() || isLoading) return;
-
-        const userMessage: Message = { role: 'user', parts: [{ text: userInput }] };
-        const newChatHistory = [...chatHistory, userMessage];
-        
-        setChatHistory(newChatHistory);
+    // Hàm xử lý logic gọi API và Stream dữ liệu
+    const processChatResponse = async (historyToProcess: Message[]) => {
         setIsLoading(true);
-        setError(null);
         setSuggestionChips([]);
 
-        const botMessagePlaceholder: Message = { role: 'model', parts: [{ text: "" }] };
-        setChatHistory(prev => [...prev, botMessagePlaceholder]);
+        // Thêm placeholder cho tin nhắn bot đang trả lời
+        setChatHistory(prev => [...prev, { role: 'model', parts: [{ text: "" }] }]);
 
         try {
             const response = await fetch('/api/chat', {
@@ -45,12 +38,24 @@ const App: React.FC = () => {
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ chatHistory: newChatHistory }),
+                body: JSON.stringify({ chatHistory: historyToProcess }),
             });
 
-            if (!response.ok || !response.body) {
-                const errorData = response.statusText;
-                throw new Error(errorData || 'Đã có lỗi xảy ra từ server.');
+            if (!response.ok) {
+                let errorMessage = 'Đã có lỗi xảy ra từ server.'; // Tin nhắn mặc định
+                try {
+                    // Cố gắng đọc lỗi chi tiết dạng JSON từ server
+                    const errorData = await response.json();
+                    errorMessage = errorData.error || errorMessage; // Ưu tiên dùng lỗi chi tiết
+                } catch (jsonError) {
+                    // Nếu server trả về không phải JSON, dùng statusText
+                    errorMessage = response.statusText || errorMessage;
+                }
+                throw new Error(errorMessage);
+            }
+
+            if (!response.body) {
+                throw new Error('Không nhận được phản hồi từ server.');
             }
             
             const reader = response.body.getReader();
@@ -87,16 +92,39 @@ const App: React.FC = () => {
             }
 
         } catch (err) {
-            const errorMessage = err instanceof Error ? err.message : "Đã có lỗi không xác định xảy ra. Vui lòng thử lại sau.";
-            setError(errorMessage);
-            const errorBotMessage: Message = { role: 'model', parts: [{ text: `Lỗi: ${errorMessage}` }] };
-            // Replace the placeholder with the error message
+            const errorMessage = err instanceof Error ? err.message : "Đã có lỗi không xác định xảy ra.";
+            
+            // Cập nhật tin nhắn cuối cùng (placeholder) thành tin nhắn lỗi
             setChatHistory(prev => {
                 const historyWithoutPlaceholder = prev.slice(0, -1);
+                const errorBotMessage: Message = { 
+                    role: 'model', 
+                    parts: [{ text: `Rất tiếc, đã có lỗi xảy ra: ${errorMessage}` }],
+                    isError: true 
+                };
                 return [...historyWithoutPlaceholder, errorBotMessage];
             });
         } finally {
             setIsLoading(false);
+        }
+    };
+
+    const handleSendMessage = async (userInput: string) => {
+        if (!userInput.trim() || isLoading) return;
+
+        const userMessage: Message = { role: 'user', parts: [{ text: userInput }] };
+        const newChatHistory = [...chatHistory, userMessage];
+        
+        setChatHistory(newChatHistory);
+        await processChatResponse(newChatHistory);
+    };
+
+    const handleRetry = async () => {
+        // Tìm tin nhắn lỗi cuối cùng và xóa nó đi để thử lại
+        if (chatHistory.length > 0 && chatHistory[chatHistory.length - 1].isError) {
+            const historyToRetry = chatHistory.slice(0, -1); // Bỏ tin nhắn lỗi
+            setChatHistory(historyToRetry);
+            await processChatResponse(historyToRetry);
         }
     };
     
@@ -104,7 +132,11 @@ const App: React.FC = () => {
         <div className="flex items-center justify-center min-h-screen p-2 sm:p-4">
             <div className="flex flex-col w-full max-w-2xl h-[95vh] sm:h-[90vh] bg-white rounded-2xl shadow-lg">
                 <Header />
-                <ChatHistory chatHistory={chatHistory} isLoading={isLoading} />
+                <ChatHistory 
+                    chatHistory={chatHistory} 
+                    isLoading={isLoading} 
+                    onRetry={handleRetry}
+                />
                 <ChatInput 
                     onSendMessage={handleSendMessage} 
                     isLoading={isLoading} 

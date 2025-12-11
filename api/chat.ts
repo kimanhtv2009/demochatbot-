@@ -1,25 +1,58 @@
 
 import { GoogleGenAI, HarmCategory, HarmBlockThreshold } from "@google/genai";
-import type { Message } from '../types';
 import { promises as fs } from 'fs';
 import path from 'path';
 
 // This is a Vercel Serverless Function
 export default async function handler(req: any, res: any) {
+  // 1. Chỉ chấp nhận method POST
   if (req.method !== 'POST') {
     res.setHeader('Allow', ['POST']);
     return res.status(405).json({ error: 'Method Not Allowed' });
   }
 
-  const { chatHistory } = req.body;
+  // 2. Kiểm tra API Key
+  const apiKey = process.env.API_KEY;
+  if (!apiKey) {
+    console.error("❌ LỖI: Chưa cấu hình biến môi trường API_KEY");
+    return res.status(500).json({ 
+        error: 'Server Misconfiguration: API_KEY is missing. Please check Vercel Settings.' 
+    });
+  }
 
+  const { chatHistory } = req.body;
   if (!chatHistory) {
     return res.status(400).json({ error: 'chatHistory is required' });
   }
 
   try {
-    const knowledgeBasePath = path.resolve(process.cwd(), 'api', 'knowledge.md');
-    const knowledgeBase = await fs.readFile(knowledgeBasePath, 'utf-8');
+    // 3. Xử lý đọc file knowledge.md (Cố gắng tìm file ở nhiều vị trí)
+    let knowledgeBase = "";
+    // Fix: Cast process to any to avoid TS error about cwd() not existing on Process interface in some environments
+    const currentDir = (process as any).cwd ? (process as any).cwd() : '/';
+    
+    const possiblePaths = [
+        path.join(currentDir, 'api', 'knowledge.md'), // Vercel thường dùng cái này
+        path.join(currentDir, 'knowledge.md'),       // Đôi khi file nằm ở root
+    ];
+
+    let fileFound = false;
+    for (const filePath of possiblePaths) {
+        try {
+            knowledgeBase = await fs.readFile(filePath, 'utf-8');
+            fileFound = true;
+            // console.log(`✅ Đã đọc knowledge.md tại: ${filePath}`);
+            break; 
+        } catch (e) {
+            // console.warn(`⚠️ Không tìm thấy file tại: ${filePath}`);
+        }
+    }
+
+    if (!fileFound) {
+        console.error("❌ LỖI: Không tìm thấy file knowledge.md ở bất kỳ đường dẫn nào.");
+        // Nếu không đọc được file, dùng nội dung mặc định để app không bị crash
+        knowledgeBase = "Lưu ý: Hệ thống không tải được dữ liệu kiến thức chuyên sâu. Hãy trả lời dựa trên kiến thức chung về tâm lý học đường.";
+    }
 
     // ===================================================================================
     // ✨ HƯỚNG DẪN VAI TRÒ VÀ TÍNH CÁCH CHO PSYFRIEND ✨
@@ -70,10 +103,12 @@ ${knowledgeBase}
 ---
 `;
 
-    const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
+    // Khởi tạo Gemini
+    const ai = new GoogleGenAI({ apiKey: apiKey });
 
+    // Gọi Gemini API với Stream
     const stream = await ai.models.generateContentStream({
-        model: 'gemini-flash-latest',
+        model: 'gemini-2.5-pro',
         contents: chatHistory,
         config: {
           systemInstruction: SYSTEM_INSTRUCTIONS,
@@ -86,17 +121,31 @@ ${knowledgeBase}
         }
     });
 
+    // Thiết lập Header để trả về Stream
     res.setHeader('Content-Type', 'text/plain; charset=utf-8');
     res.setHeader('Transfer-Encoding', 'chunked');
     
+    // Gửi từng đoạn text về Client
     for await (const chunk of stream) {
         res.write(chunk.text);
     }
 
     res.end();
 
-  } catch (error) {
-    console.error('Error in /api/chat handler:', error);
-    res.status(500).json({ error: 'Failed to get response from Gemini API.' });
+  } catch (error: any) {
+    console.error('❌ CRITICAL ERROR in /api/chat:', error);
+    
+    // Phân loại lỗi để trả về thông báo có ích
+    let clientErrorMessage = 'Failed to get response from Gemini API.';
+    
+    if (error.message?.includes('API_KEY')) {
+        clientErrorMessage = 'Server Error: Invalid API Key configuration.';
+    } else if (error.status === 429) {
+        clientErrorMessage = 'Server Error: Too many requests. Please try again later.';
+    } else if (error.status === 503) {
+        clientErrorMessage = 'Server Error: AI Service is temporarily overloaded.';
+    }
+
+    res.status(500).json({ error: clientErrorMessage, details: error.message });
   }
 }
