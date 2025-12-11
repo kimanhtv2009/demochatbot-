@@ -73,7 +73,7 @@ ${knowledgeBase}
     const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
 
     const stream = await ai.models.generateContentStream({
-        model: 'gemini-2.5-pro',
+        model: 'gemini-3-pro',
         contents: chatHistory,
         config: {
           systemInstruction: SYSTEM_INSTRUCTIONS,
