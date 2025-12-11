@@ -109,7 +109,7 @@ ${knowledgeBase}
     // Gọi Gemini API với Stream
     // Sử dụng model 'gemini-2.5-flash' để tối ưu tốc độ và độ ổn định
     const stream = await ai.models.generateContentStream({
-        model: 'gemini-2.5-flash',
+        model: 'gemini-2.5-pro',
         contents: chatHistory,
         config: {
           systemInstruction: SYSTEM_INSTRUCTIONS,
