@@ -107,8 +107,9 @@ ${knowledgeBase}
     const ai = new GoogleGenAI({ apiKey: apiKey });
 
     // Gọi Gemini API với Stream
+    // Sử dụng model 'gemini-2.5-flash' để tối ưu tốc độ và độ ổn định
     const stream = await ai.models.generateContentStream({
-        model: 'gemini-2.5-pro',
+        model: 'gemini-2.5-flash',
         contents: chatHistory,
         config: {
           systemInstruction: SYSTEM_INSTRUCTIONS,
