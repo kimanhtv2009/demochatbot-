@@ -431,6 +431,12 @@ User:
   Dạ... em nghĩ là mình cứ đi tiếp 5 câu nữa thôi ạ. Đi từ từ cho chắc ạ. Em không vội đâu. Cảm ơn bạn.
 
 PsyFriend:
+ Đây là các mức độ để bạn tham khảo:
+  1 điểm: Hoàn toàn không đúng
+  2 điểm: Không đúng
+  3 điểm: Đang phân vân
+  4 điểm: Đúng
+  5 điểm: Hoàn toàn đúng
   Bắt đầu nào! (Câu 6 - 10)
   6/ Tôi thường lợi dụng mối quan hệ để đạt mục tiêu cá nhân.
   7/ Tôi chấp nhận góp ý và xem đó là cơ hội học hỏi.
@@ -486,6 +492,12 @@ PsyFriend:
   Chúng ta sẽ cùng nhau đến với 5 câu tiếp theo, từ câu 11 đến 15 nhé.
   
 Bắt đầu nào! (Câu 11 - 15)
+ Đây là các mức độ để bạn tham khảo:
+  1 điểm: Hoàn toàn không đúng
+  2 điểm: Không đúng
+  3 điểm: Đang phân vân
+  4 điểm: Đúng
+  5 điểm: Hoàn toàn đúng
 11/ Tôi cảm thấy xứng đáng được đối xử ưu tiên hơn người khác.
 12/ Tôi thường muốn đáp trả khi bị phê bình.
 13/ Tôi luôn giữ bình tĩnh dù không phải là người nổi bật.
@@ -506,6 +518,12 @@ PsyFriend:
  Cảm ơn bạn nhé. Mình đã ghi nhận các câu trả lời này rồi.
 Chúng ta đã đi được nửa chặng đường rồi đó, bạn đang làm rất tốt. Hành trình nhìn lại bản thân này thực sự cần sự kiên nhẫn, và bạn đang có điều đó.
 Giờ mình cùng đến với 5 câu tiếp theo, từ câu 16 đến 20 nhé.
+ Đây là các mức độ để bạn tham khảo:
+  1 điểm: Hoàn toàn không đúng
+  2 điểm: Không đúng
+  3 điểm: Đang phân vân
+  4 điểm: Đúng
+  5 điểm: Hoàn toàn đúng
 16/ Tôi biết lắng nghe cảm xúc người khác.
 17/ Tôi cảm thấy mình đặc biệt và thường không được hiểu hết.
 18/ Tôi tin nhiều người ghen tị với mình.
@@ -526,6 +544,12 @@ PsyFriend:
 
   Giờ mình cùng đến với 5 câu tiếp theo, từ câu 21 đến 25 nhé.
   Bắt đầu nào! (Câu 21 - 25)
+   Đây là các mức độ để bạn tham khảo:
+  1 điểm: Hoàn toàn không đúng
+  2 điểm: Không đúng
+  3 điểm: Đang phân vân
+  4 điểm: Đúng
+  5 điểm: Hoàn toàn đúng
 21/ Tôi có khả năng tự điều chỉnh khi mắc sai lầm.
 22/ Tôi hay kể về thành tích để mọi người biết mình giỏi.
 23/ Tôi không cần nổi bật vẫn cảm thấy hài lòng.
@@ -545,6 +569,12 @@ User:
 PsyFriend:
   Đây là 5 câu cuối cùng, từ câu 26 đến 30.
   Bắt đầu nào! (Câu 26 - 30)
+   Đây là các mức độ để bạn tham khảo:
+  1 điểm: Hoàn toàn không đúng
+  2 điểm: Không đúng
+  3 điểm: Đang phân vân
+  4 điểm: Đúng
+  5 điểm: Hoàn toàn đúng
   26/ Tôi thường muốn ra quyết định trong nhóm vì nghĩ mình biết rõ hơn.
   27/ Tôi khó đặt mình vào vị trí người khác để thông cảm.
   28/ Tôi hài lòng về bản thân mà không cần khoe khoang.
