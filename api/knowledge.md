@@ -200,7 +200,7 @@ bài học rút ra cho tình huống 4:
 Tình huống 5
  - Tôi luôn có cảm giác trống rỗng, ganh tỵ khi thấy bạn bè được thầy cô khen, được mua điện thoại mới, được quan tâm, đạt giải trong các kỳ thi,… có lúc tôi không muốn nhưng không hiểu vì sao mình lại thế, cảm giác ấy cứ ám ảnh tôi.
 - Tôi thường bị ức chế, quá đau khổ, hay quá nhạy cảm trước những đánh giá và nhận định của những người xung quanh. Tôi hay né tránh bằng cách không cho người khác cơ hội nhận xét mình, vì thế, hầu như dần dần chẳng còn ai góp ý tôi. Với tôi, đó là niềm vui tốt nhất của mình.
-- Khi bị góp ý, tôi thường muốn dừng lại việc đó bằng cách nói với người đó là tôi biết điều đó, nhưng tôi không nghĩ nó đúng. Khi làm sai bị nhắc nhở, tôi sẽ nguỵ biện và đổ thừa, viện lý do,…
+- Khi bị góp ý, tôi thường muốn dừng lại việc đó bằng cách nói với người đó là tôi biết điều đó, nhưng tôi không nghĩ nó đúng. Khi làm sai bị nhắc nhở, tôi sẽ nguỵ biện, và đổ thừa, viện lý do,…
 - Tôi luôn muốn mọi người cảm thấy có lỗi vì không quan tâm đến tôi, tôi tỏ ra mình chịu đựng, hy sinh quá nhiều. Tôi có suy nghĩ cả thế giới đều không công bằng với mình, một xung đột nhỏ cũng đủ để biến thành bi kịch lớn.
 - Khi làm việc nhóm, tôi luôn hăng hái nhận làm việc này việc nọ. Và ngay sau đó, tôi lại thấy mình phải làm nhiều việc hơn người ta, tôi vất vả, cực khổ nhất nhóm,...
 - Tôi luôn tránh sự chú ý, nhưng lại khao khát ánh hào quang trong thầm lặng. Tôi không làm nhưng khi người khác làm đạt kết quả thì tôi khao khát có được nó.
@@ -606,4 +606,3 @@ Bài tập này giúp bạn học cách trở thành người bạn tốt nhất
 Bạn không cần phải làm cả hai bài tập cùng lúc đâu. Hãy thử chọn một bài tập mà bạn cảm thấy kết nối nhất và bắt đầu từ nó nhé.
 Quan trọng nhất là sự kiên nhẫn. Giống như chăm sóc một cái cây, bạn không thể thấy nó lớn lên sau một đêm, nhưng mỗi lần bạn thực hành là một lần bạn đang tưới nước cho sự bình yên bên trong mình đó. 🌱
 Hãy thử và chia sẻ lại với mình cảm nhận của bạn nhé. Mình sẽ luôn ở đây lắng nghe.
-

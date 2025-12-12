@@ -8,7 +8,6 @@ import ChatInput from './components/ChatInput';
 const App: React.FC = () => {
     const [chatHistory, setChatHistory] = useState<Message[]>([]);
     const [isLoading, setIsLoading] = useState<boolean>(false);
-    const [suggestionChips, setSuggestionChips] = useState<string[]>([]);
 
     const initializeChat = useCallback(() => {
         const welcomeMessage: Message = {
@@ -27,7 +26,6 @@ const App: React.FC = () => {
     // Hàm xử lý logic gọi API và Stream dữ liệu
     const processChatResponse = async (historyToProcess: Message[]) => {
         setIsLoading(true);
-        setSuggestionChips([]);
 
         // Thêm placeholder cho tin nhắn bot đang trả lời
         setChatHistory(prev => [...prev, { role: 'model', parts: [{ text: "" }] }]);
@@ -67,26 +65,10 @@ const App: React.FC = () => {
                 if (done) break;
 
                 accumulatedText += decoder.decode(value, { stream: true });
-                
-                const suggestionMarker = '[SUGGESTIONS]:';
-                const markerIndex = accumulatedText.indexOf(suggestionMarker);
-                
-                let displayText = accumulatedText;
-
-                if (markerIndex !== -1) {
-                    displayText = accumulatedText.substring(0, markerIndex).trim();
-                    const suggestionsPart = accumulatedText.substring(markerIndex + suggestionMarker.length);
-                    const chips = suggestionsPart.split(';').map(s => s.trim()).filter(Boolean);
-                    if (JSON.stringify(chips) !== JSON.stringify(suggestionChips)) {
-                         setSuggestionChips(chips);
-                    }
-                } else {
-                    setSuggestionChips([]);
-                }
 
                 setChatHistory(prev => {
                     const updatedHistory = [...prev];
-                    updatedHistory[updatedHistory.length - 1] = { role: 'model', parts: [{ text: displayText }] };
+                    updatedHistory[updatedHistory.length - 1] = { role: 'model', parts: [{ text: accumulatedText }] };
                     return updatedHistory;
                 });
             }
@@ -140,7 +122,6 @@ const App: React.FC = () => {
                 <ChatInput 
                     onSendMessage={handleSendMessage} 
                     isLoading={isLoading} 
-                    suggestionChips={suggestionChips}
                 />
             </div>
         </div>
