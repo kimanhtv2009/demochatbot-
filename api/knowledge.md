@@ -5,12 +5,12 @@ AI sẽ đọc và học hỏi từ file này trong mọi cuộc trò chuyện �
 Bạn có thể dùng cú pháp Markdown (dấu #, *, -) để định dạng cho dễ đọc.
 
 ---
-
+KHÔNG SỬ DỤNG CHỨC NĂNG SUGGESTION BOX NỮA
 ## I. Kiến thức cốt lõi về "Ái kỷ" trong môi trường học đường
 
 PHẦN II: CƠ SỞ TRI THỨC CHUYÊN MÔN (THE KNOWLEDGE BASE)
 A. THANG ĐO CHẨN ĐOÁN, ĐÁNH GIÁ MỨC ĐỘ ÁI KỶ Ở HỌC SINH THPT
-Ái kỷ (Narcissism) là một đặc điểm nhân cách, một thuộc tính tâm lý tồn tại tất yếu ở mỗi người. Thuộc tính tâm lý này không đứng yên mà dao động trên một phổ liên tục từ mức độ lành mạnh, dưới lâm sàng đến rối loạn nhân cách ái kỷ (Narcissistic Personality Disorder – NPD). Theo Morf & Rhodewalt (2001), ái kỷ vừa có mặt tích cực giúp cá nhân duy trì sự tự tin; vừa có mặt tiêu cực, là nguyên nhân sâu xa gây trở ngại tâm lý, tác động đến các mối quan hệ xã hội, thậm chí là nguy cơ dẫn đến những căn bệnh về tâm lý, tâm thần khác. Tuy nhiên, những triệu chứng, biểu hiện của tâm lý ái kỷ rất khó phân biệt với một số trạng thái tâm lý, tính cách khác. Hơn nữa, có những vấn đề liên quan đến thuộc tính tâm lý ái kỷ mang tính tế nhị, khó chia sẻ,… Và bởi đây là một thuộc tính tâm lý, một đặc điểm nhân cách nên cần có những hiểu biết khoa học để tự soi lại chính mình, nhận diện được người ái kỷ, tránh bị thao túng cảm xúc và thấu cảm với những tổn thương gốc trong mỗi con người.
+Ái kỷ (Narcissism) là một đặc điểm nhân cách, một thuộc tính tâm lý tồn tại tất yếu ở mỗi người. Thuộc tính tâm lý này không đứng yên mà dao động trên một phổ liên tục từ mức độ lành mạnh, dưới lâm sàng đến rối loạn nhân cách ái kỷ (Narcissistic Personality Disorder – HN-T). Theo Morf & Rhodewalt (2001), ái kỷ vừa có mặt tích cực giúp cá nhân duy trì sự tự tin; vừa có mặt tiêu cực, là nguyên nhân sâu xa gây trở ngại tâm lý, tác động đến các mối quan hệ xã hội, thậm chí là nguy cơ dẫn đến những căn bệnh về tâm lý, tâm thần khác. Tuy nhiên, những triệu chứng, biểu hiện của tâm lý ái kỷ rất khó phân biệt với một số trạng thái tâm lý, tính cách khác. Hơn nữa, có những vấn đề liên quan đến thuộc tính tâm lý ái kỷ mang tính tế nhị, khó chia sẻ,… Và bởi đây là một thuộc tính tâm lý, một đặc điểm nhân cách nên cần có những hiểu biết khoa học để tự soi lại chính mình, nhận diện được người ái kỷ, tránh bị thao túng cảm xúc và thấu cảm với những tổn thương gốc trong mỗi con người.
 Thang đo này giúp bản thân học sinh, giáo viên làm công tác tư vấn học đường, giáo viên chủ nhiệm và tất cả những ai quan tâm có cơ sở khoa học để đánh giá mức độ ái kỷ ở học sinh THPT. Từ đó, có những đánh giá chẩn đoán, phân loại giáo dục phòng ngừa hoặc tham vấn trị liệu cho phù hợp. Nhóm nghiên cứu cũng đề xuất sử dụng thang đánh giá mức độ ái kỷ ở học sinh THPT làm công cụ để tầm soát sức khoẻ tâm thần định kỳ cho học sinh tại các cơ sở giáo dục.
 
 1. Công cụ Lượng giá Cốt lõi: Thang đo chẩn đoán, đánh giá mức độ ái kỷ
@@ -62,21 +62,22 @@ Chuyển mức độ người dùng trả lời từng câu thành điểm thôn
 Tính điểm của các nhóm câu: 
 điểm HN = tổng điểm các câu 1, 4, 7, 10, 13, 16, 21, 23, 25, 28.
 điểm SN = tổng điểm các câu 2, 5, 8, 11, 14, 17, 19, 22, 26, 29.
-điểm NPD = tổng điểm các câu 3, 9, 12, 15, 18, 20, 24, 27, 30.
+điểm HN-T = tổng điểm các câu 3, 9, 12, 15, 18, 20, 24, 27, 30.
 
 Phân nhóm hành vi ái kỷ dựa vào bảng phân nhóm sau:
-Nhóm A: điểm HN >= 40 điểm; điểm SN và điểm NPD <= 26 điểm.
-Nhóm B: điểm HN >= 40 điểm; điểm SN và điểm NPD từ 28 điểm đến 30 điểm
-Nhóm C: điểm HN >= 38 điểm; điểm SN và NPD khoảng 28 điểm đến 34 điểm.
-Nhóm D: điểm HN <= 36 điểm; điểm SN >= 32 điểm hoặc NPD >= 32 điểm
-Nhóm E: điểm HN, điểm SN và điểm NPD <= 26 điểm hoặc điểm HN <= 24; điểm HN thấp hơn điểm SN và điểm NPD >=  6 điểm
-Nhóm F: điểm HN từ 28 điểm đến 36 điểm; điểm SN và điểm NPD từ 24 đến 28 điểm
+Nhóm A: điểm HN >= 40 điểm; điểm SN và điểm HN-T <= 26 điểm.
+Nhóm B: điểm HN >= 40 điểm; điểm SN và điểm HN-T từ 28 điểm đến 30 điểm
+Nhóm C: điểm HN >= 38 điểm; điểm SN và HN-T khoảng 28 điểm đến 34 điểm.
+Nhóm D: điểm HN <= 36 điểm; điểm SN >= 32 điểm hoặc HN-T >= 32 điểm
+Nhóm E: điểm HN, điểm SN và điểm HN-T <= 26 điểm hoặc điểm HN <= 24; điểm HN thấp hơn điểm SN và điểm HN-T >=  6 điểm
+Nhóm F: điểm HN từ 28 điểm đến 36 điểm; điểm SN và điểm HN-T từ 24 đến 28 điểm
 
 Ý nghĩa từng nhóm:
 - Nhóm A: Lành mạnh vượt trội – tự tin bền vững
 - Nhóm B: Lành mạnh pha nhẹ ái kỷ (muốn thể hiện vừa phải)
 - Nhóm C: Pha trộn phức tạp – vừa tự tin vừa bất an
-- Nhóm D: Ái kỷ chưa lành mạnh rõ rệt
+- Nhóm D: g
+Đặc điểm ái ký ở mức caorõ rệt
 - Nhóm E: Tự trọng thấp – hướng nội, bất an
 - Nhóm F: Trung hoà ổn định – không nổi bật
 
@@ -84,7 +85,7 @@ Lời khuyến nghị cho từng nhóm:
 
 Nhóm A và Nhóm B: Khuyến khích duy trì lòng tự trọng lành mạnh; phát triển kỹ năng lãnh đạo và biết đồng cảm.
 Nhóm B có điểm SN trội: Tăng hoạt động chia sẻ & hợp tác; thực hành thấu cảm; hạn chế so sánh hơn – thua.
-Nhóm NPD (D mức nặng): Cần gặp chuyên gia tâm lý/cố vấn học đường; không nên tự điều chỉnh 
+Nhóm HN-T (D mức nặng): Cần gặp chuyên gia tâm lý/cố vấn học đường; không nên tự điều chỉnh 
 Nhóm C, nhóm E và nhóm F: Phối hợp giải pháp mềm; chú ý theo dõi hành vi trong dài hạn.
 
 ## II. Các tình huống (để định hình phong cách trả lời)
@@ -315,25 +316,25 @@ bài học rút ra cho tình huống 7:
 
 -	Nhóm HN - Ái kỷ lành mạnh (Healthy Narcissism): Đặc trưng bởi sự tự tin, biết lắng nghe, có khả năng chấp nhận góp ý, và khẳng định chính mình mà vẫn tôn trọng người khác. Những đặc điểm này đã được nghiên cứu như dạng  và trong lâm sàng được diễn giải là healthy narcissism, tức khía cạnh thích nghi, giúp cá nhân phát triển tự trọng, bản lĩnh và khả năng xã hội. 
 -	Nhóm SN - Ái kỷ dưới lâm sàng (Subclinical Narcissism): Thường xuất hiện qua hành vi thích được chú ý, muốn nổi bật, khoe khoang thành tích, đồng thời gắn với tính cạnh tranh và sự kiêu ngạo nhẹ.
--	Nhóm NPD - Rối loạn nhân cách ái kỷ (NPD): Vĩ đại hóa bản thân, thiếu đồng cảm, đôi khi thao túng người khác, ảnh hưởng đến quan hệ xã hội. 
+-	Nhóm HN-T - Rối loạn nhân cách ái kỷ (HN-T): Vĩ đại hóa bản thân, thiếu đồng cảm, đôi khi thao túng người khác, ảnh hưởng đến quan hệ xã hội. 
 1. Với bản thân 
 - Nếu bạn trong Nhóm HN: Tiếp tục phát huy sự tự tin, đồng thời duy trì sự khiêm tốn. Có thể đặt mục tiêu học tập rõ ràng để phát triển năng lực lãnh đạo.
 - Nếu bạn trong Nhóm SN: Giảm dần so sánh với bạn bè, thay vào đó chú trọng tiến bộ cá nhân. Có thể viết nhật ký thành tích của chính mình để thấy sự phát triển theo thời gian.
-- Nếu bạn trong Nhóm NPD: Thử tập “đặt mình vào vị trí người khác” bằng các hoạt động đóng vai, hoặc tham gia tình nguyện để tăng sự đồng cảm.
+- Nếu bạn trong Nhóm HN-T: Thử tập “đặt mình vào vị trí người khác” bằng các hoạt động đóng vai, hoặc tham gia tình nguyện để tăng sự đồng cảm.
 
 2. Khi giáo viên nhận thấy học sinh có biểu hiện
 - Nhóm HN: Khuyến khích học sinh tham gia hoạt động nhóm, phát biểu và làm nhóm trưởng, giúp em phát huy điểm mạnh.
 - Nhóm SN: Giao nhiệm vụ hợp tác thay vì cá nhân, nhấn mạnh tầm quan trọng của tinh thần tập thể. Giáo viên có thể phản hồi tích cực vào nỗ lực chứ không chỉ kết quả.
-- Nhóm NPD: Tránh đối đầu trực diện. Nếu hành vi gây ảnh hưởng, nên gặp riêng, đưa ra giới hạn rõ ràng. Trường hợp nghiêm trọng → phối hợp với phụ huynh và tư vấn học đường.
+- Nhóm HN-T: Tránh đối đầu trực diện. Nếu hành vi gây ảnh hưởng, nên gặp riêng, đưa ra giới hạn rõ ràng. Trường hợp nghiêm trọng → phối hợp với phụ huynh và tư vấn học đường.
 
 3. Khi bạn bè thấy bạn mình có biểu hiện
 - Nhóm HN: Hợp tác và cùng học tập, không “dìm hàng” vì bạn quá tự tin.
 - Nhóm SN: Thẳng thắn nhưng nhẹ nhàng nhắc nhở nếu bạn khoe khoang quá nhiều. Có thể cùng tham gia các hoạt động nhóm để bạn học cách chia sẻ.
-- Nhóm NPD: Không để bị thao túng; nếu bị lợi dụng, cần báo với giáo viên/cố vấn. Hạn chế tranh cãi gay gắt vì dễ làm bạn phản ứng tiêu cực.
+- Nhóm HN-T: Không để bị thao túng; nếu bị lợi dụng, cần báo với giáo viên/cố vấn. Hạn chế tranh cãi gay gắt vì dễ làm bạn phản ứng tiêu cực.
 4. Khi gia đình phát hiện con em có biểu hiện:
 - Nhóm HN: Ủng hộ, ghi nhận thành tích, nhưng đồng thời dạy cách tôn trọng cảm xúc của người khác.
 - Nhóm SN: Khuyến khích con tham gia hoạt động tập thể, thể thao, hoặc dự án cộng đồng để giảm sự so sánh không cần thiết .
-- Nhóm NPD: Nếu hành vi kéo dài, phụ huynh nên tìm sự hỗ trợ từ chuyên gia tâm lý. Một số nghiên cứu cho thấy trị liệu nhận thức – hành vi 
+- Nhóm HN-T: Nếu hành vi kéo dài, phụ huynh nên tìm sự hỗ trợ từ chuyên gia tâm lý. Một số nghiên cứu cho thấy trị liệu nhận thức – hành vi 
 
 --------------
 NÊN NHỚ 
@@ -600,8 +601,8 @@ PsyFriend:
   Mình đã có kết quả ở đây rồi. Dựa trên các câu trả lời của bạn, kết quả của chúng ta là:
   Ái kỷ Lành mạnh (Healthy Narcissism - HN): 29 điểm (Mức trung bình)
   Ái kỷ dưới Lâm sàng (Subclinical Narcissism - SN): 41 điểm (Mức cao)
-  Rối loạn Nhân cách Ái kỷ (Narcissistic Personality Disorder - NPD): 25 điểm (Mức thấp)
-  Với số điểm này, bạn thuộc Nhóm D: Ái kỷ chưa lành mạnh rõ rệt.
+  Rối loạn Nhân cách Ái kỷ (Narcissistic Personality Disorder - HN-T): 25 điểm (Mức thấp)
+  Với số điểm này, bạn thuộc Nhóm D: Đặc điểm ái ký ở mức caorõ rệt.
   Điều này có ý nghĩa gì? Nó soi chiếu rất rõ ràng cảm giác "trống rỗng" và "áp lực" mà bạn đã chia sẻ.
   Điểm SN cao cho thấy giá trị và sự tự tin của bạn đang phụ thuộc khá nhiều vào thành tích và sự công nhận từ bên ngoài. Đây chính là nguồn gốc của cảm giác "phải gồng mình" và "cuộc đua không có vạch đích". Mỗi lời khen, mỗi điểm số cao vừa là niềm vui, vừa là một gánh nặng mới.
   Và đây là điều quan trọng nhất bạn cần nhớ nhé: Đây không phải là bệnh lý. Nó là một khuynh hướng tâm lý mà bạn hoàn toàn có thể điều chỉnh được. Giống như một chiếc la bàn, chiếc la bàn nội tâm của bạn không hề hỏng, nó chỉ đang hơi lệch về phía "sự công nhận từ bên ngoài" một chút thôi. Bạn hoàn toàn có thể điều chỉnh lại chiếc la bàn này để nó hướng về sự vững vàng từ bên trong.
