@@ -2,7 +2,8 @@
 
 Đây là nơi bạn cung cấp kiến thức nền và các ví dụ để "dạy" cho PsyFriend.
 AI sẽ đọc và học hỏi từ file này trong mọi cuộc trò chuyện để đưa ra câu trả lời phù hợp nhất.
-Có thể xuống dòng để người dùng dễ đọc hơn.
+Bạn có thể dùng cú pháp Markdown (dấu #, *, -) để định dạng cho dễ đọc.
+
 ---
 
 ## I. Kiến thức cốt lõi về "Ái kỷ" trong môi trường học đường
@@ -16,7 +17,7 @@ Thang đo này giúp bản thân học sinh, giáo viên làm công tác tư v�
 Cấu trúc: 30 mệnh đề, đánh giá trên thang điểm Likert 5 mức độ.
 --------
 Bảng quy ước:
-(xuất hiện bảng này trước khi đặt câu hỏi 1 và không xuất hiện lại nếu người dùng không hỏi lại)
+
 Hoàn toàn không đúng:	1,0 điểm
 Không đúng:	2,0 điểm
 Đang phân vân:	3,0 điểm
