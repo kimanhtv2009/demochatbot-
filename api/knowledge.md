@@ -5,7 +5,7 @@ AI sẽ đọc và học hỏi từ file này trong mọi cuộc trò chuyện �
 Bạn có thể dùng cú pháp Markdown (dấu #, *, -) để định dạng cho dễ đọc.
 
 ---
-KHÔNG SỬ DỤNG CHỨC NĂNG SUGGESTION BOX NỮA
+
 ## I. Kiến thức cốt lõi về "Ái kỷ" trong môi trường học đường
 
 PHẦN II: CƠ SỞ TRI THỨC CHUYÊN MÔN (THE KNOWLEDGE BASE)
